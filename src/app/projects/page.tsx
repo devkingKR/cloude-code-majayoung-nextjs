@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { projects, Project } from '@/lib/data';
+import { projects } from '@/lib/data';
+import { Project } from '@/types';
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<'all' | 'open' | 'in_progress' | 'completed'>('all');
@@ -77,7 +78,7 @@ export default function ProjectsPage() {
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-2">
                   <Link 
-                    href={`/projects/${project.id}`}
+                    href={`/project-detail?id=${project.id}`}
                     className="text-xl font-semibold hover:text-blue-600 transition-colors"
                   >
                     {project.title}
@@ -119,7 +120,7 @@ export default function ProjectsPage() {
                 프로젝트 ID: {project.id}
               </div>
               <Link 
-                href={`/projects/${project.id}`}
+                href={`/project-detail?id=${project.id}`}
                 className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-4 py-2 rounded-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 inline-block"
               >
                 {project.status === 'open' ? '상세보기 / 견적요청' : '프로젝트 상세보기'}

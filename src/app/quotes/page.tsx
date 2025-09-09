@@ -3,7 +3,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { projects, quotes, experts, businessOwners } from '@/lib/data';
-import { Project, Quote } from '@/types';
+import { Project, Quote, QuoteTimeline } from '@/types';
 import { rankQuotesByRecommendation } from '@/lib/recommendation';
 
 export default function QuotesComparisonPage() {
@@ -223,7 +223,7 @@ export default function QuotesComparisonPage() {
                   <div className="mb-4">
                     <h4 className="font-medium text-gray-900 mb-2">포함 서비스</h4>
                     <div className="grid md:grid-cols-2 gap-2">
-                      {quote.workScope.map((scope, idx) => (
+                      {quote.workScope.map((scope: string, idx: number) => (
                         <div key={idx} className="flex items-center text-sm text-gray-700">
                           <span className="text-green-500 mr-2">✓</span>
                           {scope}
@@ -236,7 +236,7 @@ export default function QuotesComparisonPage() {
                   <div className="mb-4">
                     <h4 className="font-medium text-gray-900 mb-2">납품물</h4>
                     <div className="flex flex-wrap gap-2">
-                      {quote.deliverables.map((deliverable, idx) => (
+                      {quote.deliverables.map((deliverable: string, idx: number) => (
                         <span 
                           key={idx}
                           className="px-2 py-1 bg-blue-50 text-blue-700 text-sm rounded"
@@ -251,7 +251,7 @@ export default function QuotesComparisonPage() {
                   <div className="mb-6">
                     <h4 className="font-medium text-gray-900 mb-2">작업 일정</h4>
                     <div className="space-y-2">
-                      {quote.timeline.map((phase, idx) => (
+                      {quote.timeline.map((phase: QuoteTimeline, idx: number) => (
                         <div key={idx} className="flex items-center text-sm">
                           <div className="w-4 h-4 bg-blue-200 rounded-full mr-3 flex items-center justify-center">
                             <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
@@ -277,7 +277,7 @@ export default function QuotesComparisonPage() {
                         </span>
                       </div>
                       <ul className="space-y-1">
-                        {recommendationScore.reasons.slice(0, 3).map((reason, idx) => (
+                        {recommendationScore.reasons.slice(0, 3).map((reason: string, idx: number) => (
                           <li key={idx} className="text-sm text-blue-800 flex items-start">
                             <span className="text-blue-600 mr-2 mt-0.5">•</span>
                             <span>{reason}</span>
