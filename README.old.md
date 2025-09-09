@@ -1,1 +1,0 @@
-# cloude-code-majayoung-nextjs

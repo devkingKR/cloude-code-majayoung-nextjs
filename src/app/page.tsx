@@ -23,7 +23,7 @@ export default function Home() {
           </Link>
           <Link 
             href="/projects" 
-            className="border-2 border-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-border border-gradient text-transparent bg-clip-text px-8 py-3 rounded-lg font-semibold hover:bg-gradient-to-r hover:from-blue-50 hover:via-purple-50 hover:to-pink-50 hover:text-gray-800 transition-all duration-200 relative overflow-hidden"
+            className="border-2 border-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-border border-gradient bg-clip-text px-8 py-3 rounded-lg font-semibold hover:bg-gradient-to-r hover:from-blue-50 hover:via-purple-50 hover:to-pink-50 hover:text-gray-800 transition-all duration-200 relative overflow-hidden"
             style={{
               background: 'linear-gradient(white, white) padding-box, linear-gradient(90deg, #3B82F6, #8B5CF6, #EC4899) border-box',
               border: '2px solid transparent'
