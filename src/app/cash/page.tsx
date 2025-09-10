@@ -69,27 +69,27 @@ export default function CashChargePage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
           마자영 캐시
         </h1>
         <p className="text-gray-600">견적 발송에 필요한 캐시를 충전하고 관리하세요</p>
       </div>
 
       {/* 현재 잔액 카드 */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-6 rounded-lg text-white mb-8">
-        <div className="flex justify-between items-center">
+      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-4 sm:p-6 rounded-lg text-white mb-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
           <div>
-            <h2 className="text-lg font-medium mb-2">현재 보유 캐시</h2>
-            <p className="text-4xl font-bold">{formatNumber(currentUser.balance)}원</p>
+            <h2 className="text-base sm:text-lg font-medium mb-2">현재 보유 캐시</h2>
+            <p className="text-2xl sm:text-4xl font-bold">{formatNumber(currentUser.balance)}원</p>
             <p className="text-blue-100 text-sm mt-2">
               견적 {Math.floor(currentUser.balance / 2000)}회 발송 가능
             </p>
           </div>
-          <div className="text-right">
+          <div className="text-left sm:text-right">
             <p className="text-sm text-blue-100">누적 사용</p>
-            <p className="text-xl font-semibold">{formatNumber(currentUser.totalSpent)}원</p>
+            <p className="text-lg sm:text-xl font-semibold">{formatNumber(currentUser.totalSpent)}원</p>
             <p className="text-sm text-blue-100 mt-1">누적 충전</p>
-            <p className="text-xl font-semibold">{formatNumber(currentUser.totalEarned)}원</p>
+            <p className="text-lg sm:text-xl font-semibold">{formatNumber(currentUser.totalEarned)}원</p>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@ export default function CashChargePage() {
       <div className="flex space-x-1 mb-8">
         <button
           onClick={() => setActiveTab('charge')}
-          className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors ${
+          className={`flex-1 py-3 px-2 sm:px-4 rounded-lg font-medium transition-colors text-sm sm:text-base ${
             activeTab === 'charge'
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -108,7 +108,7 @@ export default function CashChargePage() {
         </button>
         <button
           onClick={() => setActiveTab('history')}
-          className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors ${
+          className={`flex-1 py-3 px-2 sm:px-4 rounded-lg font-medium transition-colors text-sm sm:text-base ${
             activeTab === 'history'
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -123,11 +123,11 @@ export default function CashChargePage() {
           {/* 충전 패키지 */}
           <div className="mb-8">
             <h3 className="text-xl font-semibold mb-4">충전 패키지 선택</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
               {cashPackages.map((pkg) => (
                 <div
                   key={pkg.id}
-                  className={`relative p-6 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                  className={`relative p-4 sm:p-6 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
                     selectedPackage?.id === pkg.id
                       ? 'border-blue-500 bg-blue-50 transform scale-105'
                       : 'border-gray-200 hover:border-gray-300 hover:shadow-md'

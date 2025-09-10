@@ -146,10 +146,10 @@ export default function MyPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-semibold">발송한 견적</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-2 sm:space-y-0">
+                <h3 className="text-lg sm:text-xl font-semibold">발송한 견적</h3>
                 <div className="flex items-center space-x-2">
                   <div className="text-sm bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full font-semibold">
                     💰 {formatNumber(currentUserCash?.balance || 0)}원
@@ -194,8 +194,8 @@ export default function MyPage() {
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-4">진행 중인 프로젝트</h3>
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4">진행 중인 프로젝트</h3>
               <div className="space-y-4">
                 {myProjects.map((project) => (
                   <div key={project.id} className="border-l-4 border-green-200 pl-4">

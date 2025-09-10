@@ -127,8 +127,8 @@ export default function ExpertsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-2 sm:space-y-0">
+          <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
             마케팅 전문가
           </h1>
           <div className="text-sm text-gray-600">
@@ -136,7 +136,7 @@ export default function ExpertsPage() {
           </div>
         </div>
         
-        <div className="flex flex-wrap gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <select
             value={filterIndustry}
             onChange={(e) => {
@@ -145,7 +145,7 @@ export default function ExpertsPage() {
                 setSortBy('recommendation');
               }
             }}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[140px]"
+            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
           >
             <option value="">전체 업종</option>
             {industries.map((industry) => (
@@ -158,7 +158,7 @@ export default function ExpertsPage() {
           <select
             value={filterExpertise}
             onChange={(e) => setFilterExpertise(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[120px]"
+            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
           >
             <option value="">전체 분야</option>
             {allExpertise.map((expertise) => (
@@ -171,7 +171,7 @@ export default function ExpertsPage() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[140px]"
+            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:col-span-2 lg:col-span-1"
           >
             <option value="recommendation">🤖 마자영 AI 추천순</option>
             <option value="rating">평점순</option>
@@ -203,28 +203,28 @@ export default function ExpertsPage() {
                   AI 추천 점수 분포
                 </h3>
                 
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-                    <div className="text-2xl font-bold text-green-700">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+                  <div className="bg-green-50 p-2 sm:p-3 rounded-lg border border-green-200">
+                    <div className="text-lg sm:text-2xl font-bold text-green-700">
                       {Array.from(expertScores.values()).filter(s => s.recommendationLevel === 'high').length}
                     </div>
-                    <div className="text-sm text-green-600 font-medium">최적 매칭</div>
+                    <div className="text-xs sm:text-sm text-green-600 font-medium">최적 매칭</div>
                     <div className="text-xs text-green-500">(80점 이상)</div>
                   </div>
                   
-                  <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
-                    <div className="text-2xl font-bold text-orange-700">
+                  <div className="bg-orange-50 p-2 sm:p-3 rounded-lg border border-orange-200">
+                    <div className="text-lg sm:text-2xl font-bold text-orange-700">
                       {Array.from(expertScores.values()).filter(s => s.recommendationLevel === 'medium').length}
                     </div>
-                    <div className="text-sm text-orange-600 font-medium">적합</div>
+                    <div className="text-xs sm:text-sm text-orange-600 font-medium">적합</div>
                     <div className="text-xs text-orange-500">(60-79점)</div>
                   </div>
                   
-                  <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                    <div className="text-2xl font-bold text-gray-700">
+                  <div className="bg-gray-50 p-2 sm:p-3 rounded-lg border border-gray-200">
+                    <div className="text-lg sm:text-2xl font-bold text-gray-700">
                       {Array.from(expertScores.values()).filter(s => s.recommendationLevel === 'low').length}
                     </div>
-                    <div className="text-sm text-gray-600 font-medium">기본</div>
+                    <div className="text-xs sm:text-sm text-gray-600 font-medium">기본</div>
                     <div className="text-xs text-gray-500">(59점 이하)</div>
                   </div>
                 </div>
@@ -242,44 +242,47 @@ export default function ExpertsPage() {
         )}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
         {sortedExperts.map((expert, index) => {
           const expertScore = expertScores.get(expert.id);
           const isAIRecommended = filterIndustry && expertScore;
           const isTopRecommendation = index === 0 && sortBy === 'recommendation' && isAIRecommended;
           
           return (
-          <div key={expert.id} className={`bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 relative ${
+          <div key={expert.id} className={`bg-white p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 relative ${
             isTopRecommendation ? 'ring-2 ring-blue-400 ring-opacity-60 transform scale-[1.02]' : ''
           }`}>
             {/* AI 추천 배지 */}
             {isAIRecommended && (
-              <div className="absolute -top-3 left-4 flex space-x-2">
+              <div className="absolute -top-3 left-2 sm:left-4 flex space-x-1 sm:space-x-2">
                 {isTopRecommendation && (
-                  <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center space-x-1">
+                  <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold flex items-center space-x-1">
                     <span>🤖</span>
-                    <span>마자영 AI 추천</span>
+                    <span className="hidden sm:inline">마자영 AI 추천</span>
+                    <span className="sm:hidden">AI 추천</span>
                   </div>
                 )}
                 {expertScore && expertScore.recommendationLevel === 'high' && index > 0 && (
-                  <div className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  <div className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
                     높은 매칭
                   </div>
                 )}
               </div>
             )}
             <div className="text-center mb-4">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-2xl font-bold text-blue-600">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-xl sm:text-2xl font-bold text-blue-600">
                   {expert.name.charAt(0)}
                 </span>
               </div>
-              <h2 className="text-xl font-semibold mb-1">{expert.name}</h2>
-              <div className="flex items-center justify-center mb-2">
-                <span className="text-yellow-500 mr-1">{getRatingStars(expert.rating)}</span>
-                <span className="text-gray-600 text-sm">({expert.rating})</span>
+              <h2 className="text-lg sm:text-xl font-semibold mb-1">{expert.name}</h2>
+              <div className="flex flex-col sm:flex-row items-center justify-center mb-2 space-y-1 sm:space-y-0">
+                <div className="flex items-center">
+                  <span className="text-yellow-500 mr-1 text-sm">{getRatingStars(expert.rating)}</span>
+                  <span className="text-gray-600 text-sm">({expert.rating})</span>
+                </div>
                 {isAIRecommended && expertScore && (
-                  <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full sm:ml-2">
                     {expertScore.matchPercentage}% 매칭
                   </span>
                 )}
@@ -288,7 +291,7 @@ export default function ExpertsPage() {
 
             <div className="space-y-3">
               <div>
-                <h3 className="font-medium text-gray-900 mb-1">전문 분야</h3>
+                <h3 className="font-medium text-gray-900 mb-1 text-sm sm:text-base">전문 분야</h3>
                 <div className="flex flex-wrap gap-1">
                   {expert.expertise.map((skill, index) => (
                     <span
@@ -301,27 +304,27 @@ export default function ExpertsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4 text-sm">
                 <div>
-                  <span className="text-gray-500">경력</span>
+                  <span className="text-gray-500 text-xs sm:text-sm">경력</span>
                   <p className="font-medium">{expert.experience}년</p>
                 </div>
                 <div>
-                  <span className="text-gray-500">완료 프로젝트</span>
+                  <span className="text-gray-500 text-xs sm:text-sm">완료 프로젝트</span>
                   <p className="font-medium">{expert.completedProjects}개</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-medium text-gray-900 mb-1">시간당 요금</h3>
-                <p className="text-lg font-semibold text-blue-600">
+                <h3 className="font-medium text-gray-900 mb-1 text-sm sm:text-base">시간당 요금</h3>
+                <p className="text-base sm:text-lg font-semibold text-blue-600">
                   {formatHourlyRate(expert.hourlyRate)}원
                 </p>
               </div>
 
               <div>
-                <h3 className="font-medium text-gray-900 mb-1">소개</h3>
-                <p className="text-sm text-gray-600 line-clamp-3">{expert.bio}</p>
+                <h3 className="font-medium text-gray-900 mb-1 text-sm sm:text-base">소개</h3>
+                <p className="text-xs sm:text-sm text-gray-600 line-clamp-3">{expert.bio}</p>
               </div>
 
               {expert.portfolio.length > 0 && (
@@ -411,20 +414,22 @@ export default function ExpertsPage() {
               )}
             </div>
 
-            <div className="mt-6 pt-4 border-t flex justify-between items-center">
-              <div className="text-xs text-gray-500">
-                가입일: {new Date(expert.createdAt).toLocaleDateString('ko-KR')}
-              </div>
-              <div className="flex space-x-2">
-                <button 
-                  onClick={() => handleSendQuote(expert)}
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-3 py-2 rounded-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 text-sm"
-                >
-                  견적 발송
-                </button>
-                <button className="border border-gray-300 text-gray-600 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors text-sm">
-                  연락하기
-                </button>
+            <div className="mt-6 pt-4 border-t">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
+                <div className="text-xs text-gray-500">
+                  가입일: {new Date(expert.createdAt).toLocaleDateString('ko-KR')}
+                </div>
+                <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                  <button 
+                    onClick={() => handleSendQuote(expert)}
+                    className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-3 py-2 rounded-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 text-sm w-full sm:w-auto"
+                  >
+                    견적 발송
+                  </button>
+                  <button className="border border-gray-300 text-gray-600 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors text-sm w-full sm:w-auto">
+                    연락하기
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -453,15 +458,15 @@ export default function ExpertsPage() {
       {/* 견적 발송 모달 */}
       {showQuoteModal && selectedExpert && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
-            <div className="p-6">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto mx-4">
+            <div className="p-4 sm:p-6">
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <h3 className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                   {selectedExpert.name}님의 견적 발송
                 </h3>
                 <button
                   onClick={() => setShowQuoteModal(false)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 text-xl"
                 >
                   ✕
                 </button>

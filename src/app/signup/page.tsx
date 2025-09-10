@@ -35,38 +35,38 @@ export default function SignupPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <h1 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">회원가입</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">회원가입</h1>
       <p className="text-center text-gray-600 mb-8">마자영에서 함께 성장해요!</p>
       
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
+      <form onSubmit={handleSubmit} className="bg-white p-4 sm:p-8 rounded-lg shadow-md">
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             회원 유형 선택
           </label>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <button
               type="button"
               onClick={() => setUserType('business')}
-              className={`p-4 border-2 rounded-lg text-center ${
+              className={`p-4 border-2 rounded-lg text-center transition-colors ${
                 userType === 'business' 
                   ? 'border-blue-500 bg-blue-50 text-blue-700' 
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
               <h3 className="font-semibold">자영업자</h3>
-              <p className="text-sm text-gray-600">마케팅 서비스가 필요한 사업자</p>
+              <p className="text-sm text-gray-600 mt-1">마케팅 서비스가 필요한 사업자</p>
             </button>
             <button
               type="button"
               onClick={() => setUserType('expert')}
-              className={`p-4 border-2 rounded-lg text-center ${
+              className={`p-4 border-2 rounded-lg text-center transition-colors ${
                 userType === 'expert' 
                   ? 'border-blue-500 bg-blue-50 text-blue-700' 
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
               <h3 className="font-semibold">마케팅 전문가</h3>
-              <p className="text-sm text-gray-600">마케팅 서비스를 제공하는 전문가</p>
+              <p className="text-sm text-gray-600 mt-1">마케팅 서비스를 제공하는 전문가</p>
             </button>
           </div>
         </div>
@@ -84,7 +84,7 @@ export default function SignupPage() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                 />
               </div>
 
@@ -98,7 +98,7 @@ export default function SignupPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                 />
               </div>
 
@@ -113,7 +113,7 @@ export default function SignupPage() {
                   onChange={handleInputChange}
                   required
                   placeholder="010-1234-5678"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                 />
               </div>
 
@@ -129,7 +129,7 @@ export default function SignupPage() {
                       value={formData.businessName}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                     />
                   </div>
 
@@ -142,7 +142,7 @@ export default function SignupPage() {
                       value={formData.businessType}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                     >
                       <option value="">업종 선택</option>
                       <option value="카페/음료">카페/음료</option>
@@ -166,7 +166,7 @@ export default function SignupPage() {
                       onChange={handleInputChange}
                       required
                       placeholder="예: 서울시 강남구"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                     />
                   </div>
                 </>
@@ -185,38 +185,40 @@ export default function SignupPage() {
                       onChange={handleInputChange}
                       required
                       placeholder="예: SNS 마케팅, 브랜딩, 광고 기획"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      경력 (년)
-                    </label>
-                    <input
-                      type="number"
-                      name="experience"
-                      value={formData.experience}
-                      onChange={handleInputChange}
-                      required
-                      min="0"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        경력 (년)
+                      </label>
+                      <input
+                        type="number"
+                        name="experience"
+                        value={formData.experience}
+                        onChange={handleInputChange}
+                        required
+                        min="0"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                      />
+                    </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      시간당 요금 (원)
-                    </label>
-                    <input
-                      type="number"
-                      name="hourlyRate"
-                      value={formData.hourlyRate}
-                      onChange={handleInputChange}
-                      required
-                      min="0"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        시간당 요금 (원)
+                      </label>
+                      <input
+                        type="number"
+                        name="hourlyRate"
+                        value={formData.hourlyRate}
+                        onChange={handleInputChange}
+                        required
+                        min="0"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                      />
+                    </div>
                   </div>
 
                   <div>
@@ -230,7 +232,7 @@ export default function SignupPage() {
                       required
                       rows={4}
                       placeholder="자신의 전문성과 경험을 간단히 소개해주세요."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base resize-none"
                     />
                   </div>
                 </>
@@ -239,7 +241,7 @@ export default function SignupPage() {
 
             <button
               type="submit"
-              className="w-full mt-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white py-3 px-4 rounded-md font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+              className="w-full mt-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white py-3 px-4 rounded-md font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200 text-sm sm:text-base"
             >
               마자영 시작하기
             </button>
